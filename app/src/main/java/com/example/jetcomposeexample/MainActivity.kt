@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                             .verticalScroll(scrollState)
                     ){
 
-                        Element(Perfil())
+                        //Element(Perfil())
                         Element()
                         Element()
                         Element()
