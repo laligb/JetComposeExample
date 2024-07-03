@@ -1,6 +1,7 @@
 package com.example.jetcomposeexample
 
 import android.os.Bundle
+import android.os.ParcelFileDescriptor
 import android.util.EventLogTags.Description
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,6 +33,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jetcomposeexample.ui.theme.JetComposeExampleTheme
 
+private val perfils: List<Perfil> = listOf(
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+    Perfil(nom = "Joan", description = "Ets un bon estudiant de Goland"),
+)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +65,7 @@ class MainActivity : ComponentActivity() {
                             .verticalScroll(scrollState)
                     ){
 
-                        //Element(Perfil())
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
-                        Element()
+                      Usuaris(perfils)
                     }
 
 
@@ -130,18 +136,36 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+data class Perfil(val nom: String, val description: String)
+
 @Composable
-private fun Element() {
+private fun Usuaris(perfils: List<Perfil>) {
+    Column {
+        perfils.forEach{ dades ->
+            Element(dades)
+        }
+    }
+}
+
+
+@Composable
+private fun Element(perfil: Perfil) {
     Row {
         Avatar()
         Column (
             modifier = Modifier.padding(15.dp)
         ) {
-            SalutatioPersonal(nom = "Joan")
-            Description()
-
+            SalutatioPersonal(perfil.nom)
+            Description(perfil.description, linies = 1)
         }
+
     }
+}
+
+@Composable
+private fun Description(description: String, linies:Int = Int.MAX_VALUE){
+    Text(text = description, maxLines = linies)
 }
 
 @Composable
@@ -187,12 +211,7 @@ private fun Serveis() {
     )
 }
 
-@Composable
-private fun Description(){
-    Text(text = "Ets un bon estudiant de Goland"
-//        modifier = Modifier.padding(vertical = 10.dp)
-        )
-}
+
 
 /*@Composable
 private fun Description() {
