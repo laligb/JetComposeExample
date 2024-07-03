@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,8 +42,27 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val scrollState = rememberScrollState()
+                    Column (
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .verticalScroll(scrollState)
+                    ){
 
-                    Element()
+                        Element(Perfil())
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                        Element()
+                    }
+
+
 
 
                     /*Text(
