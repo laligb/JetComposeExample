@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -151,13 +152,18 @@ private fun Usuaris(perfils: List<Perfil>) {
 
 @Composable
 private fun Element(perfil: Perfil) {
+    var expanded = false
     Row {
         Avatar()
         Column (
-            modifier = Modifier.padding(15.dp)
+            modifier = Modifier.padding(15.dp).clickable {
+                expanded = !expanded
+            }
         ) {
             SalutatioPersonal(perfil.nom)
-            Description(perfil.description, linies = 1)
+            Description(perfil.description,
+                if (expanded) Int.MAX_VALUE else  1
+            )
         }
 
     }
